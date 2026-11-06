@@ -1,0 +1,53 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 500  # Hz
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    link3_imu_sensor:
+      type: imu_sensor_broadcaster/IMUSensorBroadcaster
+    link3_wrench_sensor:
+      type: force_torque_sensor_broadcaster/ForceTorqueSensorBroadcaster
+    link3_pose_sensor:
+      type: pose_broadcaster/PoseBroadcaster
+
+    joint_effort_controller:
+      type: "effort_controllers/JointGroupEffortController"
+    joint_position_controller:
+      type: "position_controllers/JointGroupPositionController"
+
+joint_effort_controller:
+  ros__parameters:
+    joints:
+        - joint1
+        - joint2
+
+joint_position_controller:
+  ros__parameters:
+    joints:
+        - joint1
+        - joint2
+    command_interfaces:
+      - position
+      #- velocity
+
+    state_interfaces:
+      - position
+      - velocity
+
+
+link3_imu_sensor:
+  ros__parameters:
+    sensor_name: "link3_imu"
+    frame_id: "link3"
+
+link3_wrench_sensor:
+  ros__parameters:
+    sensor_name: "link3_wrench"
+    frame_id: "link3"
+
+link3_pose_sensor:
+  ros__parameters:
+    pose_name: "link3_pose"
+    frame_id: "world"
